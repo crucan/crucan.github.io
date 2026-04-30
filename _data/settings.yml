@@ -48,7 +48,7 @@ author:
 
 projects__settings:
   projects__title: 最近の<span class="text-span">制作物</span> # Add a 'text-span' class to highlight text.
-  projects__description: 音楽と技術の繋がりがここに
+  projects__description: 音楽と技術の繋がりはここ
 
 
 
