@@ -6,23 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>2石トランジスタによるVCOの挙動解説</title>
+  <title>ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</title>
   <meta name='description' content='Crucanの個人サークル'>
 
-  <link rel="canonical" href="crucan.github.io/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">
+  <link rel="canonical" href="crucan.github.io/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="2石トランジスタによるVCOの挙動解説 – Lilacium">
-  <meta name="twitter:description" content="KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。
+  <meta name="twitter:title" content="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1 – Lilacium">
+  <meta name="twitter:description" content="ブラウン管を使ったオシロスコープ、綺麗で良いですよね。
+自分でも…作りたいよね…？？？？？？？？？作りましょう！！！！！！
 ">
-  <meta name="twitter:image:src" content="crucan.github.io/images/20260430_1.png">
+  <meta name="twitter:image:src" content="crucan.github.io/images/20260515_1.jpg">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="2石トランジスタによるVCOの挙動解説 – Lilacium">
-  <meta property="og:description" content="KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。
+  <meta property="og:title" content="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1 – Lilacium">
+  <meta property="og:description" content="ブラウン管を使ったオシロスコープ、綺麗で良いですよね。
+自分でも…作りたいよね…？？？？？？？？？作りましょう！！！！！！
 ">
-  <meta property="og:image" content="crucan.github.io/images/20260430_1.png">
+  <meta property="og:image" content="crucan.github.io/images/20260515_1.jpg">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" rel="stylesheet">
@@ -128,13 +130,15 @@
     
       <div class="post-tags__box">
         
+          <a href="/tag/アナログオシロスコープ" class="post__tag">アナログオシロスコープ</a>
+        
           <a href="/tag/LTspice" class="post__tag">LTspice</a>
         
           <a href="/tag/アナログ回路" class="post__tag">アナログ回路</a>
         
       </div>
     
-    <h1 class="post-title">2石トランジスタによるVCOの挙動解説</h1>
+    <h1 class="post-title">ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</h1>
   </div>
 </div>
 
@@ -143,7 +147,7 @@
   <div class="row">
     <div class="col col-12">
       <div class="post-image">
-        <img class="lazy" data-src="/images/20260430_1.png" alt="2石トランジスタによるVCOの挙動解説">
+        <img class="lazy" data-src="/images/20260515_1.jpg" alt="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1">
       </div>
     </div>
   </div>
@@ -161,30 +165,30 @@
         </a>
         <div class="post__author-info">
           <a href="/about/" class="post__author-link">Crucan</a>
-          <span class="post__date"><time datetime="2026-04-30T00:00:00+09:00">30 Apr 2026</time></span>
+          <span class="post__date"><time datetime="2026-05-30T00:00:00+09:00">30 May 2026</time></span>
         </div>
       </div>
       <!--<div class="post__share">
   <ul class="share__list list-reset">
     <li class="share__item">
-      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=crucan.github.io/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC"
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=crucan.github.io/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8BVCO%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC&url=crucan.github.io/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC"
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13LO1I%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B_%E3%81%9D%E3%81%AE1&url=crucan.github.io/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1"
         onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
         title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=crucan.github.io/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC&title=2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8BVCO%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC&summary=&source="
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=crucan.github.io/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1&title=%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13LO1I%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B_%E3%81%9D%E3%81%AE1&summary=&source="
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
     </li>
 
     <li class="share__item">
-      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=crucan.github.io/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC&amp;media=crucan.github.io/images/20260430_1.png&amp;description=2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8BVCO%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC"
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=crucan.github.io/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1&amp;media=crucan.github.io/images/20260515_1.jpg&amp;description=%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13LO1I%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B_%E3%81%9D%E3%81%AE1"
       onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
       rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
     </li>
@@ -193,67 +197,149 @@
     </div>
 
     <div class="post__content">
-      <p>KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。</p>
+      <p>ブラウン管を使ったオシロスコープ、綺麗で良いですよね。<br />
+自分でも…作りたいよね…？？？？？？？？？作りましょう！！！！！！</p>
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/20260430_1.png" />
-    <img src="/images/20260430_2.png" style="width: 75%; height: auto;" />
+    <div align="center">
+      <img src="/images/20260515_1.jpg" style="width: 75%; height:" />
+      <!--<img src="/images/20260430_2.png" style="width: 75%; height: auto;">-->
 
   </div>
-  
 </div>
+<center><small>ロシア製ブラウン管3LO1Iでの波形表示例</small></center>  
+<center><small>　</small></center>  
+  
+<h3 id="段落">オシロスコープとは？？？</h3>
+まずオシロスコープという物について軽く。  
+オシロスコープは回路の波形を確認するための計測器です。  
+横軸が時間、縦軸が電圧を表します。  
+このオシロスコープにはアナログの物とデジタルの物があります。  
+アナログのオシロスコープには表題にもあるブラウン管が使用されています。  
+デジタルのオシロスコープは測定用の回路、CPU、メモリなどで構成されています。  
+現代ではデジタルのオシロスコープが主流ですが、 
+・高性能なデジタルオシロスコープは必要ない程度の工作では十分使える  
+・腐っても測定器なので作りがしっかりしている  
+・安い  
+等の理由で電子工作する人では持っている人もちらほら居ます。  
 
-<center><small>2石トランジスタVCOの基本回路</small></center>
+アナログオシロスコープに使われているブラウン管は電極から電子を飛ばし、画面に塗られた蛍光塗料にぶつけて発光させることで映像を映す仕組みです。  
+現在は液晶に取って代わられてしまっているため、ブラウン管自体も殆ど使用されて居ません。  
 
-<p>大まかな回路の構成を説明すると</p>
+そんなこんなで完全に旧世代のデバイスであるブラウン管ですが、Ebay等を覗くと意外とたくさんの中古品があります。  
+するとやたらと小さいブラウン管を発見しました。それが3LO1Iです。  
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_2.jpg" style="width: 75%; height:" />
+  </div>
+</div>
+<center><small>500円玉より少し大きい程度の表示領域</small></center>
 
-<p>左側のQ4,D4,R15,R16,R17で定電流回路<br />
-中央右側のQ5,Q6はトランジスタ2つを使ったサイリスタ<br />
-右側の,R19,R20はリセットの基準電圧を抵抗分圧で生成</p>
+なんと直径30mm、長さ110mmと非常に小さい。  
+ついでに我が家にもう一つあるアナログオシロスコープから取り出したブラウン管と比較するとこの通り。  
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_3.jpg" style="width: 75%; height:" />
+  </div>
+</div>
+<center><small>比較</small></center>
 
-<p>となる。</p>
+この小さいブラウン管を使ったらポータブルアナログオシロスコープ作れるじゃん！！！！という事でこれから少しずつ進めていきます。  
+<center><small>　</small></center>  
 
-<p>この3つの要素からなる回路は次のような電流の流れを経て鋸波を生成する。</p>
-<ol>
-  <li>定電流源からC3へ電流を流して充電する</li>
-  <li>Vout &gt; (Vth+0.6)になるとQ6がONするようになる。<br />
-PNPなのでエミッタよりベースの電位の方が低いと電流を流すようになる。</li>
-  <li>Q6のコレクタからQ5のベースに電流が流れることでQ5がONになる。</li>
-  <li>Q5がONになり、Q6のベースとR19、R20からなる閾値生成部から電流を引こうとする。</li>
-</ol>
+
+<h3 id="段落">定格の確認</h3>  
+前置きが長くなりましたが、今回はこのブラウン管ならではの動作電圧範囲についてメモを残します。  
+ブラウン管は液晶と違い、高電圧が必要になってきます。  
+液晶は5Vや小さいものなら3.3Vなどあれば十分です。  
+では3LO1Iではどうだ？？？？
 
 <div class="gallery-box">
   <div class="gallery">
-    <img src="/images/20260430_3.png" />
-    
-
+    <div align="center">
+      <img src="/images/20260515_4.png" style="width: 75%; height:" />
   </div>
-  
 </div>
-<p>3番と4番はループするため、Q5をオンするのに必要なベース電流が流せなくなるまでC3→Q6→Q5の経路で電流が流れ続ける。<br />
-この仕組みにより、RS-FFのような自己保持回路のロジックや、一定時間放電のためにトランジスタをONし続ける回路が不要になっている。<br />
-この回路の面白い点として、Q5のコレクタから見た時にR19,R20からなるインピーダンスよりもQ6のベースのインピーダンスが低い必要がある。
-仮にR19,R20からなる閾値生成部のインピーダンスがQ6のベースより低い場合、Q5がONした時にQ6のベースから十分に電流を引くことが出来ず、自己保持をすることが出来なくなる。　　</p>
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_5.png" style="width: 75%; height:" />
+  </div>
+</div>
+<center><small>っでか</small></center>
+デカすぎん？？？  
+これでも他のブラウン管ではkVにもなったりするので、小さい方です。  
 
-<p>あとはバッファ回路でC3の充放電の挙動を取り出してあげれば完成となる。
-MS-20ではソースフォロワで取り出しているが、ボルテージフォロワで取り出した場合や帰還部にC3を入れた場合などの違いはそのうち考察したい。</p>
+まぁいいでしょう。  
+とりあえずデータシートを確認すると下記のように書いてあります。
+
+Typ値  
+ヒーター電圧	6.3V  
+ヒーター電流	0.54 ～ 0.66A  
+2nd Anode電圧	500V  
+1st Anode電圧(focusが合っている時)	0 ～ 50V  
+カットオフ電圧	-90 ～ -30V  
+
+最大定格  
+ヒーター電圧	5.7 ～ 6.9V  
+2nd Anode電圧	500 ～ 800V  
+1st Anode最大電圧	150V  
+制御グリッド電圧	-125 ～ 0V  
+Heater-Cathode間電圧	-125 ～ 0V  
+偏向板と2nd Anode間電圧	-450 ～ 450V  
+
+<center><small>　</small></center>  
+<h3 id="段落">前提条件とパラメータの設定</h3>  
+今回の制作にあたり使用するトランジスタは、2sc1815と同程度のスペックを持つKT315というソ連製のトランジスタを使用します。  
+真っ当に考えたらVce耐圧のバカデカいトランジスタを使って差動アンプを組むべきな気もしますが、
+・せめて帯域1MHzくらいまでは欲しい
+・古いソ連製の石で高耐圧の物が見つからない
+・でもソ連製の石で作りたい
+といった都合で、cathodeをGNDにするとKT315の定格をオーバーしてしまいます。
+
+上記の条件を踏まえて実機でピントが合う条件を確認し、1st Anode, 2nd Anode Cathode focus&amp;controlの電圧はこのように設定しました。  
+2nd Anode電圧     :80V  
+1st Anode電圧     :-300V 
+Cathode電圧       :-350V
+Focus&amp;control電圧 :-400V
+Heater電圧        :5V
+
+データシートではHeater-Cathode間電圧が-150V~0Vと書かれていますが、傍熱管のようなので多分それ以上電圧掛かっててもきっと大丈夫。
+他の端子とショートしていないかテスターでも確認し、導通無しだったので一先ずOKとしました。
+
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_6.png" style="width: 75%; height:" />
+  </div>
+</div>
+<center><small></small></center>
+
+次回は差動アンプ部分について書く予定です。
+
+
+
+
+</div></div></div></div></div></div>
 
     </div>
 
     <div class="post__navigation">
   
-
-  
-  <a class="post__next" href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">
-    <div class="next__box">
-      <span class="post__nav post__nav__next">Next post</span>
-      <h2 class="post__nav__title">ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</h2>
+  <a class="post__prev" href="/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">
+    <div class="prev__image">
+      <img class="lazy" data-src="/images/20260430_1.png" alt="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1">
     </div>
-    <div class="next__image">
-      <img class="lazy" data-src="/images/20260515_1.jpg" alt="2石トランジスタによるVCOの挙動解説">
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Prev post</span>
+      <h2 class="post__nav__title">2石トランジスタによるVCOの挙動解説</h2>
     </div>
   </a>
+  
+
   
 </div>
 
@@ -279,14 +365,22 @@ MS-20ではソースフォロワで取り出しているが、ボルテージフ
       
 
       
+    
+
+      
+      
+
+      
+
+      
 
       <div class="article col col-4 col-d-6 col-t-12">
         <div class="article__inner">
 
           
           <div class="image-wrap">
-            <a class="article__image" href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">
-              <img class="lazy" data-src="/images/20260515_1.jpg" alt="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1">
+            <a class="article__image" href="/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">
+              <img class="lazy" data-src="/images/20260430_1.png" alt="2石トランジスタによるVCOの挙動解説">
             </a>
           </div>
           
@@ -296,8 +390,6 @@ MS-20ではソースフォロワで取り出しているが、ボルテージフ
             
             <div class="article-tags__box">
               
-              <a href="/tag/アナログオシロスコープ" class="article__tag">アナログオシロスコープ</a>
-              
               <a href="/tag/LTspice" class="article__tag">LTspice</a>
               
               <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
@@ -306,15 +398,11 @@ MS-20ではソースフォロワで取り出しているが、ボルテージフ
             
 
             <h2 class="article__title">
-              <a href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</a>
+              <a href="/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">2石トランジスタによるVCOの挙動解説</a>
             </h2>
 
-            <p class="article__excerpt">ブラウン管を使ったオシロスコープ、綺麗で良いですよね。  
-自分でも...作りたいよね...？？？？？？？？？作りましょう！！！！！！
-
-
-
- ...</p>
+            <p class="article__excerpt">KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。
+...</p>
 
             <div class="article__meta">
               <a href="/about/" class="article__author-image">
@@ -322,7 +410,7 @@ MS-20ではソースフォロワで取り出しているが、ボルテージフ
               </a>
               <div class="article-info">
                 <a href="/about/" class="article__author-link">Crucan</a>
-                <span class="article__date"><time datetime="2026-05-30T00:00:00+09:00">30 May 2026</time></span>
+                <span class="article__date"><time datetime="2026-04-30T00:00:00+09:00">30 Apr 2026</time></span>
               </div>
             </div>
 
@@ -332,14 +420,6 @@ MS-20ではソースフォロワで取り出しているが、ボルテージフ
 
         
         
-      
-    
-
-      
-      
-
-      
-
       
     
     </div>

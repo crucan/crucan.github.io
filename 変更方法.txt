@@ -1,0 +1,18 @@
+D:\documents\MyHomepage\avenco-jekyll-theme-v1.0\avenco-jekyll-theme-v1.0\Avenco\_includes\section-subscribe.html
+D:\documents\MyHomepage\avenco-jekyll-theme-v1.0\avenco-jekyll-theme-v1.0\Avenco\_includes\section-testimonials.html
+上記二つで幸せになった人の項目と下の方にあったサブスクの項目を消している。
+
+
+D:\documents\MyHomepage\avenco-jekyll-theme-v1.0\avenco-jekyll-theme-v1.0\Avenco\_sass\3-modules\_contact.scss
+ここで右上の方に会ったget touchボタンを見えなくしている。
+
+
+
+
+D:\documents\MyHomepage\avenco-jekyll-theme-v1.0\avenco-jekyll-theme-v1.0\Avenco\blog\index.html
+ブログの説明文を編集するのはここ
+
+
+D:\documents\Git_hub\crucan.github.io\_includes\share.html
+ブログのシェアボタンをコメントアウトで消してる。
+

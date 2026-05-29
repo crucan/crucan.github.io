@@ -1,0 +1,135 @@
+---
+layout: post
+title:  ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1
+date:   2026-05-30
+image:  '/images/20260515_1.jpg'
+tags:   [アナログオシロスコープ,LTspice,アナログ回路]
+lang: ja
+---
+ブラウン管を使ったオシロスコープ、綺麗で良いですよね。  
+自分でも...作りたいよね...？？？？？？？？？作りましょう！！！！！！
+
+
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_1.jpg" style="width: 75%; height:">
+      <!--<img src="/images/20260430_2.png" style="width: 75%; height: auto;">-->
+
+  </div>
+</div>
+<center><small>ロシア製ブラウン管3LO1Iでの波形表示例</small></center>  
+<center><small>　</small></center>  
+  
+<h3 id="段落">オシロスコープとは？？？</h3>
+まずオシロスコープという物について軽く。  
+オシロスコープは回路の波形を確認するための計測器です。  
+横軸が時間、縦軸が電圧を表します。  
+このオシロスコープにはアナログの物とデジタルの物があります。  
+アナログのオシロスコープには表題にもあるブラウン管が使用されています。  
+デジタルのオシロスコープは測定用の回路、CPU、メモリなどで構成されています。  
+現代ではデジタルのオシロスコープが主流ですが、 
+・高性能なデジタルオシロスコープは必要ない程度の工作では十分使える  
+・腐っても測定器なので作りがしっかりしている  
+・安い  
+等の理由で電子工作する人では持っている人もちらほら居ます。  
+
+アナログオシロスコープに使われているブラウン管は電極から電子を飛ばし、画面に塗られた蛍光塗料にぶつけて発光させることで映像を映す仕組みです。  
+現在は液晶に取って代わられてしまっているため、ブラウン管自体も殆ど使用されて居ません。  
+
+そんなこんなで完全に旧世代のデバイスであるブラウン管ですが、Ebay等を覗くと意外とたくさんの中古品があります。  
+するとやたらと小さいブラウン管を発見しました。それが3LO1Iです。  
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_2.jpg" style="width: 75%; height:">
+  </div>
+</div>
+<center><small>500円玉より少し大きい程度の表示領域</small></center>
+
+なんと直径30mm、長さ110mmと非常に小さい。  
+ついでに我が家にもう一つあるアナログオシロスコープから取り出したブラウン管と比較するとこの通り。  
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_3.jpg" style="width: 75%; height:">
+  </div>
+</div>
+<center><small>比較</small></center>
+
+この小さいブラウン管を使ったらポータブルアナログオシロスコープ作れるじゃん！！！！という事でこれから少しずつ進めていきます。  
+<center><small>　</small></center>  
+
+
+<h3 id="段落">定格の確認</h3>  
+前置きが長くなりましたが、今回はこのブラウン管ならではの動作電圧範囲についてメモを残します。  
+ブラウン管は液晶と違い、高電圧が必要になってきます。  
+液晶は5Vや小さいものなら3.3Vなどあれば十分です。  
+では3LO1Iではどうだ？？？？
+
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_4.png" style="width: 75%; height:">
+  </div>
+</div>
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_5.png" style="width: 75%; height:">
+  </div>
+</div>
+<center><small>っでか</small></center>
+デカすぎん？？？  
+これでも他のブラウン管ではkVにもなったりするので、小さい方です。  
+
+まぁいいでしょう。  
+とりあえずデータシートを確認すると下記のように書いてあります。
+
+Typ値  
+ヒーター電圧	6.3V  
+ヒーター電流	0.54 ～ 0.66A  
+2nd Anode電圧	500V  
+1st Anode電圧(focusが合っている時)	0 ～ 50V  
+カットオフ電圧	-90 ～ -30V  
+
+最大定格  
+ヒーター電圧	5.7 ～ 6.9V  
+2nd Anode電圧	500 ～ 800V  
+1st Anode最大電圧	150V  
+制御グリッド電圧	-125 ～ 0V  
+Heater-Cathode間電圧	-125 ～ 0V  
+偏向板と2nd Anode間電圧	-450 ～ 450V  
+
+<center><small>　</small></center>  
+<h3 id="段落">前提条件とパラメータの設定</h3>  
+今回の制作にあたり使用するトランジスタは、2sc1815と同程度のスペックを持つKT315というソ連製のトランジスタを使用します。  
+真っ当に考えたらVce耐圧のバカデカいトランジスタを使って差動アンプを組むべきな気もしますが、
+・せめて帯域1MHzくらいまでは欲しい
+・古いソ連製の石で高耐圧の物が見つからない
+・でもソ連製の石で作りたい
+といった都合で、cathodeをGNDにするとKT315の定格をオーバーしてしまいます。
+
+上記の条件を踏まえて実機でピントが合う条件を確認し、1st Anode, 2nd Anode Cathode focus&controlの電圧はこのように設定しました。  
+2nd Anode電圧     :80V  
+1st Anode電圧     :-300V 
+Cathode電圧       :-350V
+Focus&control電圧 :-400V
+Heater電圧        :5V
+
+データシートではHeater-Cathode間電圧が-150V~0Vと書かれていますが、傍熱管のようなので多分それ以上電圧掛かっててもきっと大丈夫。
+他の端子とショートしていないかテスターでも確認し、導通無しだったので一先ずOKとしました。
+
+<div class="gallery-box">
+  <div class="gallery">
+    <div align="center">
+      <img src="/images/20260515_6.png" style="width: 75%; height:">
+  </div>
+</div>
+<center><small></small></center>
+
+次回は差動アンプ部分について書く予定です。
+
+
+
+
