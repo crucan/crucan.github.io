@@ -3,7 +3,7 @@ layout: post
 title:  2石トランジスタによるVCOの挙動解説
 date:   2026-04-30
 image:  '/images/20260430_1.png'
-tags:   [LTspice,アナログ回路]
+tags:   [シンセサイザー,LTspice,アナログ回路]
 lang: ja
 ---
 KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。
