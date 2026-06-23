@@ -6,21 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Lilacium</title>
+  <title>LM13700のVin-Iout特性の算出</title>
   <meta name='description' content='Crucanの個人サークル'>
 
-  <link rel="canonical" href="crucan.github.io/">
+  <link rel="canonical" href="crucan.github.io/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Lilacium">
-  <meta name="twitter:description" content="Crucanの個人サークル">
-  <meta name="twitter:image:src" content="crucan.github.io/images/icon_main.png">
+  <meta name="twitter:title" content="LM13700のVin-Iout特性の算出 – Lilacium">
+  <meta name="twitter:description" content="エフェクターやモジュラーシンセなどのVCF,VCAその他諸々で使用されているLM13700のVin-Iout特性を内部等価回路から算出してみます。
+
+  
+    
+
+">
+  <meta name="twitter:image:src" content="crucan.github.io/images/20260623_1.png">
 
   <!-- Facebook OpenGraph -->
-  <meta property="og:title" content="Lilacium">
-  <meta property="og:description" content="Crucanの個人サークル">
-  <meta property="og:image" content="crucan.github.io/images/icon_main.png">
+  <meta property="og:title" content="LM13700のVin-Iout特性の算出 – Lilacium">
+  <meta property="og:description" content="エフェクターやモジュラーシンセなどのVCF,VCAその他諸々で使用されているLM13700のVin-Iout特性を内部等価回路から算出してみます。
+
+  
+    
+
+">
+  <meta property="og:image" content="crucan.github.io/images/20260623_1.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800;900&display=swap" rel="stylesheet">
@@ -88,7 +98,7 @@
             
               
               <li class="nav__item">
-                <a href="/" class="nav__link active-link">Home</a>
+                <a href="/" class="nav__link">Home</a>
               </li>
               
             
@@ -131,278 +141,426 @@
 
   <!-- begin content -->
   <main class="content animate" aria-label="Content">
-    <!-- begin author -->
-<section class="author">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="author__inner">
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
-          <div class="author__left">
-            <h1 class="author__name">Crucan</h1>
-            <p class="author__bio">楽曲制作および楽器にかかわる物づくりをメインで活動しています。</p>
-            <a class="author__btn" href="#projects">
-              <span class="circle-bg"><i class="ion ion-md-arrow-down button-arrow"></i></span> See my works
+<div class="container">
+  <div class="post-head">
+    
+      <div class="post-tags__box">
+        
+          <a href="/tag/シンセサイザー" class="post__tag">シンセサイザー</a>
+        
+          <a href="/tag/LTspice" class="post__tag">LTspice</a>
+        
+          <a href="/tag/アナログ回路" class="post__tag">アナログ回路</a>
+        
+      </div>
+    
+    <h1 class="post-title">LM13700のVin-Iout特性の算出</h1>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col col-12">
+      <div class="post-image">
+        <img class="lazy" data-src="/images/20260623_1.png" alt="LM13700のVin-Iout特性の算出">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- begin post -->
+<div class="container">
+  <article class="post animate">
+
+    <div class="post__info">
+      <div class="post__author">
+        <a href="/about/" class="post__author-image">
+          <img class="lazy" data-src="/images/icon_small.png" alt="Crucan">
+        </a>
+        <div class="post__author-info">
+          <a href="/about/" class="post__author-link">Crucan</a>
+          <span class="post__date"><time datetime="2026-06-23T00:00:00+09:00">23 Jun 2026</time></span>
+        </div>
+      </div>
+      <!--<div class="post__share">
+  <ul class="share__list list-reset">
+    <li class="share__item">
+      <a class="share__link share__facebook" href="https://www.facebook.com/sharer/sharer.php?u=crucan.github.io/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Facebook" rel="nofollow"><i class="ion ion-logo-facebook"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__twitter" href="https://twitter.com/intent/tweet?text=LM13700%E3%81%AEVin-Iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA&url=crucan.github.io/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA"
+        onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;"
+        title="Share on Twitter" rel="nofollow"><i class="ion ion-logo-twitter"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=crucan.github.io/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA&title=LM13700%E3%81%AEVin-Iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA&summary=&source="
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn" rel="nofollow"><i class="ion ion-logo-linkedin"></i></a>
+    </li>
+
+    <li class="share__item">
+      <a class="share__link share__pinterest" href="http://pinterest.com/pin/create/button/?url=crucan.github.io/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA&amp;media=crucan.github.io/images/20260623_1.png&amp;description=LM13700%E3%81%AEVin-Iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA"
+      onclick="window.open(this.href, 'pop-up', 'left=20,top=20,width=900,height=500,toolbar=1,resizable=0'); return false;" title="Share on Pinterest"
+      rel="nofollow"><i class="ion ion-logo-pinterest"></i></a>
+    </li>
+  </ul>
+</div>-->
+    </div>
+
+    <div class="post__content">
+      <p>エフェクターやモジュラーシンセなどのVCF,VCAその他諸々で使用されているLM13700のVin-Iout特性を内部等価回路から算出してみます。</p>
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_1.png" />
+
+  </div>
+  
+</div>
+<center><small>LM13700の内部等価回路</small></center>
+<center><small>　</small></center>
+
+<p>この回路は大まかに 
+Q1とQ2が差動ペア<br />
+Q6~8,Q12~14が吐き出し型のウィルソンカレントミラー<br />
+Q3~5,Q9~11が吸い込み型のウィルソンカレントミラー<br />
+で構成されています。</p>
+
+<p>この回路で下図のように電流の向きを置いて解いていきます。</p>
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_2.png" />
+
+  </div>
+  
+</div>
+
+<p>トランジスタの$V_{BE}$とコレクタ電流$I_c$の関係は<br />
+$I_c = I_s \times exp(\frac{q}{kT}V_{BE})$<br />
+で表されるのでこれを$Q_1$,$Q_2$に当てはめると<br />
+$I_1 = I_s \times exp(\frac{q}{kT}V_{BE1})$・・・式1<br />
+$I_2 = I_s \times exp(\frac{q}{kT}V_{BE2})$・・・式2<br />
+と表せる。<br />
+更にQ1とQ2は共通エミッタ部分で電流の式を立てると<br />
+$I_{abc} = I_1 + I_2$・・・式3<br />
+と表せる。<br />
+電圧についても同様にエミッタ部分の電圧を$V_E$と置き、それぞれのトランジスタの$V_{BE}$、入力電圧$V_1$と$V_2$で式を立てると<br />
+$V_{BE1} = V_{i1}-V_E$・・・式4<br />
+$V_{BE2} = V_{i2}-V_E$・・・式5<br />
+となり、式4を$V_E$の式に変形して式5に代入して整理したものを$V_{in}$とすると、<br />
+$V_{BE2}-V_{BE1} = V_{i2}-V_{i1} = V_{in}$・・・式6<br />
+となる。</p>
+
+<p>次に差動増幅は共通エミッタ部分につながる電流源からの電流をシーソーのように左右に分配する動作をするので、その分配比率を考えてみる。<br />
+式変形を見やすくするために$V_T=\frac{kT}{q}$で置き換えて$I_1$と$I_2$の比を考えると<br />
+$\frac{I_2}{I_1} = \frac{I_s \times exp(\frac{V_{BE2}}{V_T})}{I_s \times exp(\frac{V_{BE1}}{V_T})}$・・・式7<br />
+$\frac{exp(a)}{exp(b)}=exp(a-b)$の関係と式6を用いて式変形すると<br />
+$\frac{I_2}{I_1} = exp(\frac{V_{BE2} - V_{BE1}}{V_T}) = exp(\frac{V_{in}}{V_T})$・・・式8<br />
+が得られる。同様にして<br />
+$\frac{I_1}{I_2} = \frac{I_s \times exp(\frac{V_{BE1}}{V_T})}{I_s \times exp(\frac{V_{BE2}}{V_T})}$<br />
+より、<br />
+$\frac{I_1}{I_2} = exp(\frac{V_{BE1} - V_{BE2}}{V_T}) = exp(\frac{-V_{in}}{V_T})$・・・式9<br />
+となる。</p>
+
+<p>#この辺から符号反転すると帳尻合いそうなんだが…<br />
+式8から$I_2$の式にすると、<br />
+$I_2 = I_1 \times exp(\frac{V_{in}}{V_T})$・・・式10<br />
+式3に式10を代入して<br />
+$I_{abc} = I_1 \times (1+exp(\frac{V_{in}}{V_T}))$<br />
+$I_1 = \frac{I_{abc}}{(1+exp(\frac{V_{in}}{V_T}))}$・・・式11</p>
+
+<p>同様に式9から$I_1$の式にすると、<br />
+$I_1 = I_2 \times exp(\frac{-V_{in}}{V_T})$・・・式12<br />
+式3に式12を代入して<br />
+$I_{abc} = I_2 \times (1+exp(\frac{-V_{in}}{V_T}))$<br />
+$I_2 = \frac{I_{abc}}{(1+exp(\frac{-V_{in}}{V_T}))}$ ・・・式13</p>
+
+<p>これで初段の差動増幅部分の$I_1$と$I_2$を表すことが出来た。<br />
+この後はカレントミラーであることを利用する。<br />
+電流がコピーされるとして出力電流$I_o$との関係は<br />
+$I_o = I_2-I_1$・・・式14<br />
+と表され、式11と式13を代入すると<br />
+$I_o = I_{abc} \times (\frac{1}{(1+exp(\frac{-V_{in}}{V_T}))} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$</p>
+
+<p>$exp(-x)=\frac{1}{exp(x)}$の関係から$V_{in}$にマイナスが付いた側を変形すると<br />
+$= I_{abc} \times  (\frac{1}{1+\frac{1}{(exp(\frac{V_{in}}{V_T}))}} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$<br />
+$= I_{abc} \times (\frac{exp(\frac{V_{in}}{V_T})}{(1+exp(\frac{V_{in}}{V_T}))} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$・・・式15<br />
+式15を整理すると<br />
+$I_o = \frac{(exp(\frac{V_{in}}{V_T})-1)}{(1+exp(\frac{V_{in}}{V_T}))}$<br />
+ここで、$tanh(x) = \frac{exp(x)-exp(-x)}{exp(x)+exp(-x)}$の形に近づけられそうだと気づく。</p>
+
+<p>そこで、分母・分子に $\exp\left(-\frac{V_{in}}{2V_T}\right)$ を掛ける。<br />
+この時の分母分子はそれぞれ<br />
+分母<br />
+$\exp(\frac{V_{in}}{V_T}) \times \exp(-\frac{V_{in}}{2V_T}) + 1 \times \exp(-\frac{V_{in}}{2V_T})$<br />
+$=\exp(\frac{V_{in}}{2V_T}) + \exp(-\frac{V_{in}}{2V_T})$</p>
+
+<p>分子<br />
+$\exp(\frac{V_{in}}{V_T}t) \times \exp(-\frac{V_{in}}{2V_T}) - 1 \times \exp(-\frac{V_{in}}{2V_T})$<br />
+$=\exp(\frac{V_{in}}{2V_T}) - \exp(-\frac{V_{in}}{2V_T})$ <br />
+となるので、<br />
+$I_o = I_{abc} \times \frac{\exp(\frac{V_{in}}{2V_T}) - \exp(-\frac{V_{in}}{2V_T})}{\exp(\frac{V_{in}}{2V_T}) + \exp(-\frac{V_{in}}{2V_T})}$<br />
+となり、$x=\frac{V_{in}}{2V_T}$より<br />
+$I_o=I_{abc} \times tanh(\frac{V_{in}}{2V_T})$・・・式16<br />
+と表せる。</p>
+
+<p>tanh(x)の式はxが0付近の微小区間ではtanh(x)≈xと出来るので<br />
+$I_o=I_{abc} (\frac{V_{in}}{2V_T})$・・・式17<br />
+$V_T=\frac{kT}{q}$より<br />
+$I_o=V_{in} (\frac{I_{abc} \times q}{2kT})$<br />
+でデータシートにある式が求められる。めでたしめでたし。</p>
+
+<p>ところで、なぜカレントミラーが必要になるのか。<br />
+Q1とQ2はどちらも吸い込み型の電流減として動作する。
+このデバイスではGND基準の正負の電圧に対して電流も正と負で出力できる必要がある。<br />
+電流源で言うなら吸い込みと吐き出しが出来る必要がある。<br />
+そこでカレントミラーを使って電流の向きを折り返してあげることで、吸い込み型を吐き出し型に、吐き出し型を吸い込み型の電流減に変えている。<br />
+Q1の電流は2回、Q2の電流は1回折り返している。<br />
+なお、仮にQ1は吸い込み型の電流源なんだからそのまま繋げるじゃん！！！と出力に繋いでもこの場合は負側の電流による電圧降下の下限が-0.6V付近になってしまう。</p>
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_3.png" />
+    <img src="/images/20260623_4.png" />
+
+  </div>
+</div>
+<p>基準電位が電源レールにあるカレントミラーで折り返してあげることで、電圧降下の上限下限が電源電圧付近まで上げられるので、スイング幅を大きく取りたいなら終段のカレントミラーは必須になる。</p>
+
+
+    </div>
+
+    <div class="post__navigation">
+  
+  <a class="post__prev" href="/blog/%E3%83%95%E3%83%AB%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0supersaw%E3%82%92%E4%BD%9C%E3%82%8B%E6%A1%881">
+    <div class="prev__image">
+      <img class="lazy" data-src="/images/20260606_1.png" alt="LM13700のVin-Iout特性の算出">
+    </div>
+    <div class="prev__box">
+      <span class="post__nav post__nav__prev">Prev post</span>
+      <h2 class="post__nav__title">フルアナログSuperSawを作る案1</h2>
+    </div>
+  </a>
+  
+
+  
+</div>
+
+  </article>
+</div>
+<!-- end post -->
+
+
+
+
+
+
+
+<div class="container">
+  <div class="related-posts section is-related">
+    <h5 class="related-title"><span>You may also like</span></h5>
+    <div class="row grid">
+    
+
+      
+      
+
+      
+
+      
+    
+
+      
+      
+
+      
+
+      
+
+      <div class="article col col-4 col-d-6 col-t-12">
+        <div class="article__inner">
+
+          
+          <div class="image-wrap">
+            <a class="article__image" href="/blog/%E3%83%95%E3%83%AB%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0supersaw%E3%82%92%E4%BD%9C%E3%82%8B%E6%A1%881">
+              <img class="lazy" data-src="/images/20260606_1.png" alt="フルアナログSuperSawを作る案1">
             </a>
           </div>
+          
 
-          <div class="author__right">
-            <div class="author__image">
-              <img class="lazy" data-src="/images/icon_main.png" alt="'s Picture">
-            </div>
-          </div>
+          <div class="article__content">
 
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end author -->
-
-<!-- begin projects -->
-<section class="section projects" id="projects">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner animate">
-
-          <div class="section__info">
-            <div class="section__head">
-              <h2 class="section__title">最近の<span class="text-span">制作物</span></h2>
-              <a class="section__link" href="/projects">View all <i class="ion ion-md-arrow-forward"></i></a>
+            
+            <div class="article-tags__box">
+              
+              <a href="/tag/シンセサイザー" class="article__tag">シンセサイザー</a>
+              
+              <a href="/tag/LTspice" class="article__tag">LTspice</a>
+              
+              <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
+              
             </div>
             
-              <p class="section__description">音楽と技術の繋がりはここ</p>
-            
-          </div>
 
-          <div class="row">
-            
-          </div>
+            <h2 class="article__title">
+              <a href="/blog/%E3%83%95%E3%83%AB%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0supersaw%E3%82%92%E4%BD%9C%E3%82%8B%E6%A1%881">フルアナログSuperSawを作る案1</a>
+            </h2>
 
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end projects -->
-
-<!-- begin testimonials -->
-
-
-<!--
-<section class="section testimonials">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-
-        <div class="section__info">
-          <div class="section__head">
-            <h2 class="section__title"></h2>
-            <ul class="controls list-reset" id="customize-controls" aria-label="Slider Navigation" tabindex="0">
-              <li class="prev" data-controls="prev" aria-controls="customize" tabindex="-1">
-                <i class="ion ion-ios-arrow-back"></i>
-              </li>
-              <li class="next" data-controls="next" aria-controls="customize" tabindex="-1">
-                <i class="ion ion-ios-arrow-forward"></i>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="testimonials__slider my-slider">
-          
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
--->
-
-
-<!-- end testimonials -->
-
-<!-- begin blog -->
-<section class="section blog">
-  <div class="container">
-    <div class="row">
-      <div class="col col-12">
-        <div class="contaniner__inner animate">
-  
-        <div class="section__info">
-          <div class="section__head">
-            <h2 class="section__title">Recent <span class="text-span">Blog</span> Posts</h2>
-            <a class="section__link" href="/blog">View all <i class="ion ion-md-arrow-forward"></i></a>
-          </div>
-          
-            <p class="section__description">音楽制作から電気電子ソフトに関連するメモはここ</p>
-          
-        </div>
-  
-          <div class="row">
-            
-              
-                <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    
-      <div class="image-wrap">
-        <a class="article__image" href="/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA">
-          <img class="lazy" data-src="/images/20260623_1.png" alt="LM13700のVin-Iout特性の算出">
-        </a>
-      </div>
-    
-
-    <div class="article__content">
-
-      
-        <div class="article-tags__box">
-          
-            <a href="/tag/シンセサイザー" class="article__tag">シンセサイザー</a>
-          
-            <a href="/tag/LTspice" class="article__tag">LTspice</a>
-          
-            <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
-          
-        </div>
-      
-
-      <h2 class="article__title">
-        <a href="/blog/lm13700%E3%81%AEvin-iout%E7%89%B9%E6%80%A7%E3%81%AE%E7%AE%97%E5%87%BA">LM13700のVin-Iout特性の算出</a>
-      </h2>
-
-      <p class="article__excerpt">
-        エフェクターやモジュラーシンセなどのVCF,VCAその他諸々で使用されているLM13700のVin-Iout特性を内部等価回路から算出してみます...
-      </p>
-
-      <div class="article__meta">
-        <a href="/about/" class="article__author-image">
-          <img src="/images/icon_small.png" alt="Crucan">
-        </a>
-        <div class="article-info">
-          <a href="/about/" class="article__author-link">Crucan</a>
-          <span class="article__date"><time datetime="2026-06-23T00:00:00+09:00">23 Jun 2026</time></span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-              
-                <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
-
-    
-      <div class="image-wrap">
-        <a class="article__image" href="/blog/%E3%83%95%E3%83%AB%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0supersaw%E3%82%92%E4%BD%9C%E3%82%8B%E6%A1%881">
-          <img class="lazy" data-src="/images/20260606_1.png" alt="フルアナログSuperSawを作る案1">
-        </a>
-      </div>
-    
-
-    <div class="article__content">
-
-      
-        <div class="article-tags__box">
-          
-            <a href="/tag/シンセサイザー" class="article__tag">シンセサイザー</a>
-          
-            <a href="/tag/LTspice" class="article__tag">LTspice</a>
-          
-            <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
-          
-        </div>
-      
-
-      <h2 class="article__title">
-        <a href="/blog/%E3%83%95%E3%83%AB%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0supersaw%E3%82%92%E4%BD%9C%E3%82%8B%E6%A1%881">フルアナログSuperSawを作る案1</a>
-      </h2>
-
-      <p class="article__excerpt">
-        SuperSaw、電子音楽を作る方なら一度は聞いたことありますよね？？？
+            <p class="article__excerpt">SuperSaw、電子音楽を作る方なら一度は聞いたことありますよね？？？
 ピッチを少しずらしたノコギリ波をたくさん重ねてぶ厚い音を作れます。
 
-...
-      </p>
+...</p>
 
-      <div class="article__meta">
-        <a href="/about/" class="article__author-image">
-          <img src="/images/icon_small.png" alt="Crucan">
-        </a>
-        <div class="article-info">
-          <a href="/about/" class="article__author-link">Crucan</a>
-          <span class="article__date"><time datetime="2026-06-06T00:00:00+09:00">06 Jun 2026</time></span>
+            <div class="article__meta">
+              <a href="/about/" class="article__author-image">
+                <img src="/images/icon_small.png" alt="Crucan">
+              </a>
+              <div class="article-info">
+                <a href="/about/" class="article__author-link">Crucan</a>
+                <span class="article__date"><time datetime="2026-06-06T00:00:00+09:00">06 Jun 2026</time></span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
-    </div>
-  </div>
-</div>
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+      <div class="article col col-4 col-d-6 col-t-12">
+        <div class="article__inner">
+
+          
+          <div class="image-wrap">
+            <a class="article__image" href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">
+              <img class="lazy" data-src="/images/20260515_1.jpg" alt="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1">
+            </a>
+          </div>
+          
+
+          <div class="article__content">
+
+            
+            <div class="article-tags__box">
               
-                <div class="article col col-4 col-d-6 col-t-12">
-  <div class="article__inner">
+              <a href="/tag/アナログオシロスコープ" class="article__tag">アナログオシロスコープ</a>
+              
+              <a href="/tag/LTspice" class="article__tag">LTspice</a>
+              
+              <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
+              
+            </div>
+            
 
-    
-      <div class="image-wrap">
-        <a class="article__image" href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">
-          <img class="lazy" data-src="/images/20260515_1.jpg" alt="ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1">
-        </a>
-      </div>
-    
+            <h2 class="article__title">
+              <a href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</a>
+            </h2>
 
-    <div class="article__content">
-
-      
-        <div class="article-tags__box">
-          
-            <a href="/tag/アナログオシロスコープ" class="article__tag">アナログオシロスコープ</a>
-          
-            <a href="/tag/LTspice" class="article__tag">LTspice</a>
-          
-            <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
-          
-        </div>
-      
-
-      <h2 class="article__title">
-        <a href="/blog/%E3%83%AD%E3%82%B7%E3%82%A2%E8%A3%BD%E3%83%96%E3%83%A9%E3%82%A6%E3%83%B3%E7%AE%A13%D0%BB%D0%BE1%D0%B8-3lo1i-%E3%81%A7%E3%82%A2%E3%83%8A%E3%83%AD%E3%82%B0%E3%82%AA%E3%82%B7%E3%83%AD%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E4%BD%9C%E3%82%8B-%E3%81%9D%E3%81%AE1">ロシア製ブラウン管3LO1Iでアナログオシロスコープを作る_その1</a>
-      </h2>
-
-      <p class="article__excerpt">
-        ブラウン管を使ったオシロスコープ、綺麗で良いですよね。
+            <p class="article__excerpt">ブラウン管を使ったオシロスコープ、綺麗で良いですよね。
 自分でも…作りたいよね…？？？？？？？？？作りましょう！！！！！！
 
 
   
     
-...
-      </p>
+...</p>
 
-      <div class="article__meta">
-        <a href="/about/" class="article__author-image">
-          <img src="/images/icon_small.png" alt="Crucan">
-        </a>
-        <div class="article-info">
-          <a href="/about/" class="article__author-link">Crucan</a>
-          <span class="article__date"><time datetime="2026-05-30T00:00:00+09:00">30 May 2026</time></span>
+            <div class="article__meta">
+              <a href="/about/" class="article__author-image">
+                <img src="/images/icon_small.png" alt="Crucan">
+              </a>
+              <div class="article-info">
+                <a href="/about/" class="article__author-link">Crucan</a>
+                <span class="article__date"><time datetime="2026-05-30T00:00:00+09:00">30 May 2026</time></span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
+        
+        
+      
+    
+
+      
+      
+
+      
+
+      
+
+      <div class="article col col-4 col-d-6 col-t-12">
+        <div class="article__inner">
+
+          
+          <div class="image-wrap">
+            <a class="article__image" href="/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">
+              <img class="lazy" data-src="/images/20260430_1.png" alt="2石トランジスタによるVCOの挙動解説">
+            </a>
+          </div>
+          
+
+          <div class="article__content">
+
+            
+            <div class="article-tags__box">
+              
+              <a href="/tag/シンセサイザー" class="article__tag">シンセサイザー</a>
+              
+              <a href="/tag/LTspice" class="article__tag">LTspice</a>
+              
+              <a href="/tag/アナログ回路" class="article__tag">アナログ回路</a>
+              
+            </div>
+            
+
+            <h2 class="article__title">
+              <a href="/blog/2%E7%9F%B3%E3%83%88%E3%83%A9%E3%83%B3%E3%82%B8%E3%82%B9%E3%82%BF%E3%81%AB%E3%82%88%E3%82%8Bvco%E3%81%AE%E6%8C%99%E5%8B%95%E8%A7%A3%E8%AA%AC">2石トランジスタによるVCOの挙動解説</a>
+            </h2>
+
+            <p class="article__excerpt">KORGのMS-20のVCOは回路の簡略化がとても面白いVCOなので、GND基準で波形を生成するように書き直した回路で動作を追ってみましょう。
+...</p>
+
+            <div class="article__meta">
+              <a href="/about/" class="article__author-image">
+                <img src="/images/icon_small.png" alt="Crucan">
+              </a>
+              <div class="article-info">
+                <a href="/about/" class="article__author-link">Crucan</a>
+                <span class="article__date"><time datetime="2026-04-30T00:00:00+09:00">30 Apr 2026</time></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+        
+        
+          
     </div>
   </div>
 </div>
-              
-            
-          </div>
 
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end blog -->
+
+
+
   </main>
   <!-- end content -->
 

@@ -1,0 +1,129 @@
+---
+layout: post
+title:  LM13700のVin-Iout特性の算出
+date:   2026-06-23
+image:  '/images/20260623_1.png'
+tags:   [シンセサイザー,LTspice,アナログ回路]
+lang: ja
+---
+
+
+
+エフェクターやモジュラーシンセなどのVCF,VCAその他諸々で使用されているLM13700のVin-Iout特性を内部等価回路から算出してみます。
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_1.png">
+
+  </div>
+  
+</div>
+<center><small>LM13700の内部等価回路</small></center>  
+<center><small>　</small></center>
+
+この回路は大まかに 
+Q1とQ2が差動ペア  
+Q6~8,Q12~14が吐き出し型のウィルソンカレントミラー  
+Q3~5,Q9~11が吸い込み型のウィルソンカレントミラー  
+で構成されています。    
+
+この回路で下図のように電流の向きを置いて解いていきます。  
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_2.png">
+
+  </div>
+  
+</div>
+
+トランジスタの$V_{BE}$とコレクタ電流$I_c$の関係は  
+$I_c = I_s \times exp(\frac{q}{kT}V_{BE})$  
+で表されるのでこれを$Q_1$,$Q_2$に当てはめると  
+$I_1 = I_s \times exp(\frac{q}{kT}V_{BE1})$・・・式1  
+$I_2 = I_s \times exp(\frac{q}{kT}V_{BE2})$・・・式2  
+と表せる。  
+更にQ1とQ2は共通エミッタ部分で電流の式を立てると  
+$I_{abc} = I_1 + I_2$・・・式3  
+と表せる。  
+電圧についても同様にエミッタ部分の電圧を$V_E$と置き、それぞれのトランジスタの$V_{BE}$、入力電圧$V_1$と$V_2$で式を立てると  
+$V_{BE1} = V_{i1}-V_E$・・・式4  
+$V_{BE2} = V_{i2}-V_E$・・・式5  
+となり、式4を$V_E$の式に変形して式5に代入して整理したものを$V_{in}$とすると、  
+$V_{BE2}-V_{BE1} = V_{i2}-V_{i1} = V_{in}$・・・式6  
+となる。  
+
+次に差動増幅は共通エミッタ部分につながる電流源からの電流をシーソーのように左右に分配する動作をするので、その分配比率を考えてみる。  
+式変形を見やすくするために$V_T=\frac{kT}{q}$で置き換えて$I_1$と$I_2$の比を考えると  
+$\frac{I_2}{I_1} = \frac{I_s \times exp(\frac{V_{BE2}}{V_T})}{I_s \times exp(\frac{V_{BE1}}{V_T})}$・・・式7  
+$\frac{exp(a)}{exp(b)}=exp(a-b)$の関係と式6を用いて式変形すると  
+$\frac{I_2}{I_1} = exp(\frac{V_{BE2} - V_{BE1}}{V_T}) = exp(\frac{V_{in}}{V_T})$・・・式8  
+が得られる。同様にして  
+$\frac{I_1}{I_2} = \frac{I_s \times exp(\frac{V_{BE1}}{V_T})}{I_s \times exp(\frac{V_{BE2}}{V_T})}$  
+より、  
+$\frac{I_1}{I_2} = exp(\frac{V_{BE1} - V_{BE2}}{V_T}) = exp(\frac{-V_{in}}{V_T})$・・・式9  
+となる。  
+
+#この辺から符号反転すると帳尻合いそうなんだが...  
+式8から$I_2$の式にすると、  
+$I_2 = I_1 \times exp(\frac{V_{in}}{V_T})$・・・式10  
+式3に式10を代入して  
+$I_{abc} = I_1 \times (1+exp(\frac{V_{in}}{V_T}))$  
+$I_1 = \frac{I_{abc}}{(1+exp(\frac{V_{in}}{V_T}))}$・・・式11  
+
+同様に式9から$I_1$の式にすると、  
+$I_1 = I_2 \times exp(\frac{-V_{in}}{V_T})$・・・式12  
+式3に式12を代入して  
+$I_{abc} = I_2 \times (1+exp(\frac{-V_{in}}{V_T}))$  
+$I_2 = \frac{I_{abc}}{(1+exp(\frac{-V_{in}}{V_T}))}$ ・・・式13  
+
+これで初段の差動増幅部分の$I_1$と$I_2$を表すことが出来た。  
+この後はカレントミラーであることを利用する。  
+電流がコピーされるとして出力電流$I_o$との関係は  
+$I_o = I_2-I_1$・・・式14  
+と表され、式11と式13を代入すると  
+$I_o = I_{abc} \times (\frac{1}{(1+exp(\frac{-V_{in}}{V_T}))} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$  
+
+$exp(-x)=\frac{1}{exp(x)}$の関係から$V_{in}$にマイナスが付いた側を変形すると  
+$= I_{abc} \times  (\frac{1}{1+\frac{1}{(exp(\frac{V_{in}}{V_T}))}} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$  
+$= I_{abc} \times (\frac{exp(\frac{V_{in}}{V_T})}{(1+exp(\frac{V_{in}}{V_T}))} - \frac{1}{(1+exp(\frac{V_{in}}{V_T}))})$・・・式15  
+式15を整理すると  
+$I_o = \frac{(exp(\frac{V_{in}}{V_T})-1)}{(1+exp(\frac{V_{in}}{V_T}))}$  
+ここで、$tanh(x) = \frac{exp(x)-exp(-x)}{exp(x)+exp(-x)}$の形に近づけられそうだと気づく。  
+
+そこで、分母・分子に $\exp\left(-\frac{V_{in}}{2V_T}\right)$ を掛ける。  
+この時の分母分子はそれぞれ  
+分母  
+$\exp(\frac{V_{in}}{V_T}) \times \exp(-\frac{V_{in}}{2V_T}) + 1 \times \exp(-\frac{V_{in}}{2V_T})$  
+$=\exp(\frac{V_{in}}{2V_T}) + \exp(-\frac{V_{in}}{2V_T})$  
+  
+分子  
+$\exp(\frac{V_{in}}{V_T}t) \times \exp(-\frac{V_{in}}{2V_T}) - 1 \times \exp(-\frac{V_{in}}{2V_T})$  
+$=\exp(\frac{V_{in}}{2V_T}) - \exp(-\frac{V_{in}}{2V_T})$   
+となるので、  
+$I_o = I_{abc} \times \frac{\exp(\frac{V_{in}}{2V_T}) - \exp(-\frac{V_{in}}{2V_T})}{\exp(\frac{V_{in}}{2V_T}) + \exp(-\frac{V_{in}}{2V_T})}$  
+となり、$x=\frac{V_{in}}{2V_T}$より  
+$I_o=I_{abc} \times tanh(\frac{V_{in}}{2V_T})$・・・式16  
+と表せる。  
+
+tanh(x)の式はxが0付近の微小区間ではtanh(x)≈xと出来るので  
+$I_o=I_{abc} (\frac{V_{in}}{2V_T})$・・・式17  
+$V_T=\frac{kT}{q}$より  
+$I_o=V_{in} (\frac{I_{abc} \times q}{2kT})$  
+でデータシートにある式が求められる。めでたしめでたし。
+
+
+ところで、なぜカレントミラーが必要になるのか。  
+Q1とQ2はどちらも吸い込み型の電流減として動作する。
+このデバイスではGND基準の正負の電圧に対して電流も正と負で出力できる必要がある。  
+電流源で言うなら吸い込みと吐き出しが出来る必要がある。  
+そこでカレントミラーを使って電流の向きを折り返してあげることで、吸い込み型を吐き出し型に、吐き出し型を吸い込み型の電流減に変えている。  
+Q1の電流は2回、Q2の電流は1回折り返している。  
+なお、仮にQ1は吸い込み型の電流源なんだからそのまま繋げるじゃん！！！と出力に繋いでもこの場合は負側の電流による電圧降下の下限が-0.6V付近になってしまう。  
+<div class="gallery-box">
+  <div class="gallery">
+    <img src="/images/20260623_3.png">
+    <img src="/images/20260623_4.png">
+
+  </div>
+</div>
+基準電位が電源レールにあるカレントミラーで折り返してあげることで、電圧降下の上限下限が電源電圧付近まで上げられるので、スイング幅を大きく取りたいなら終段のカレントミラーは必須になる。
+
