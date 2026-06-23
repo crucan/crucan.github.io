@@ -38,6 +38,9 @@
     var itype_text = [{{site.data.settings.mailchimp__settings.mailchimp__text}}];
   </script>
   <script src="{{ site.baseurl }}/js/common.js"></script>
+  {% if page.katex %}
+    {% include katex.html %}
+  {% endif %}
 </body>
 
 </html>
