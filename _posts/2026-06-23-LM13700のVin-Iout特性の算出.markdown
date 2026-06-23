@@ -5,6 +5,7 @@ date:   2026-06-23
 image:  '/images/20260623_1.png'
 tags:   [シンセサイザー,LTspice,アナログ回路]
 lang: ja
+katex: true
 ---
 
 

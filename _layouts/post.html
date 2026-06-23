@@ -2,7 +2,9 @@
 layout: default
 ---
 
-<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+{% if page.katex %}
+  {% include katex.html %}
+{% endif %}
 
 <div class="container">
   <div class="post-head">
