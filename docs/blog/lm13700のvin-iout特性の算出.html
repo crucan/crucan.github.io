@@ -141,9 +141,7 @@
 
   <!-- begin content -->
   <main class="content animate" aria-label="Content">
-    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
-
-<div class="container">
+    <div class="container">
   <div class="post-head">
     
       <div class="post-tags__box">
@@ -354,6 +352,28 @@ Q1の電流は2回、Q2の電流は1回折り返している。<br />
   </article>
 </div>
 <!-- end post -->
+ 
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" onload="renderMath()"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true}
+      ],
+      throwOnError : false
+    });
+  });
+</script>
+
 
 
 
@@ -557,8 +577,6 @@ Q1の電流は2回、Q2の電流は1回折り返している。<br />
     </div>
   </div>
 </div>
-
-
 
 
   </main>

@@ -53,6 +53,10 @@ layout: default
   </article>
 </div>
 <!-- end post -->
+ 
+{% if page.katex %}
+  {% include katex.html %}
+{% endif %}
 
 {% include related-posts.html %}
 
