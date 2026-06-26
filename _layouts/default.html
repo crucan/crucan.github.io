@@ -5,10 +5,8 @@
 
 <body>
 
-  {% if site.data.settings.google-analytics %}
-    {% include google-analytics.html %}
-  {% endif %}
-
+  
+ <!--ここにいたgoogle analytics用の条件分岐と{% include google-analytics.html %}はhead.htmlにif分をコメントアウトして移動-->
   {% if site.data.settings.cover__image %}
     <div class="top-cover">
       <div class="cover-image">
