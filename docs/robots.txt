@@ -1,4 +1,1 @@
----
-layout: null
----
-Sitemap: {{ site.url }}{{ site.baseurl }}/sitemap.xml
+Sitemap: crucan.github.io/sitemap.xml
